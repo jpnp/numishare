@@ -5,8 +5,13 @@ services:
     image: httpd:2.4
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - "./httpd.conf:/usr/local/apache2/conf/httpd.conf"
+      - "./httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf"
+      - "./serverchain.crt:/usr/local/apache2/conf/server.crt"
+      - "./server.key:/usr/local/apache2/conf/server.key"
+      - "./static-site:/srv"
   orbeon:
     container_name: orbeon
     image: tiredofit/orbeon:latest
@@ -20,6 +25,9 @@ services:
       - "./tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml"
       - "./web.xml:/usr/local/tomcat/webapps/orbeon/WEB-INF/web.xml"
       - "./properties-local.xml:/usr/local/tomcat/webapps/orbeon/WEB-INF/resources/config/properties-local.xml"
+      - "../ogc:/usr/local/tomcat/webapps/orbeon/WEB-INF/resources/numishare-projects/ogc"
+      - "./log-orbeon:/usr/local/logs"
+#      - "./orbeon-log4j.xml:/usr/local/tomcat/webapps/orbeon/WEB-INF/resources/config/log4j.xml"
   solr:
     container_name: solr
     image: solr:8.6.2
