@@ -12,6 +12,7 @@ services:
       - "./serverchain.crt:/usr/local/apache2/conf/server.crt"
       - "./server.key:/usr/local/apache2/conf/server.key"
       - "./static-site:/srv"
+      - "./themes:/srv/themes"
   orbeon:
     container_name: orbeon
     image: tiredofit/orbeon:latest
@@ -25,12 +26,12 @@ services:
       - "./tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml"
       - "./web.xml:/usr/local/tomcat/webapps/orbeon/WEB-INF/web.xml"
       - "./properties-local.xml:/usr/local/tomcat/webapps/orbeon/WEB-INF/resources/config/properties-local.xml"
-      - "../ogc:/usr/local/tomcat/webapps/orbeon/WEB-INF/resources/numishare-projects/ogc"
+#      - "../ogc:/usr/local/tomcat/webapps/orbeon/WEB-INF/resources/numishare-projects/ogc"
       - "./log-orbeon:/usr/local/logs"
 #      - "./orbeon-log4j.xml:/usr/local/tomcat/webapps/orbeon/WEB-INF/resources/config/log4j.xml"
   solr:
     container_name: solr
-    image: solr:8.6.2
+    image: solr:8.11
     ports:
       - "8983:8983"
     volumes:
@@ -40,7 +41,7 @@ services:
       - solr-precreate
       - gettingstarted
   exist:
-    image: existdb/existdb:5.2.0
+    image: existdb/existdb:5.3.1
     container_name: exist
     ports:
       - 8080:8080
@@ -52,9 +53,20 @@ services:
       - type: volume
         source: config
         target: /exist/config
+  fuseki:
+    image: stain/jena-fuseki:3.14.0
+    container_name: fuseki
+    ports:
+      - 3030:3030
+    environment:
+      - ADMIN_PASSWORD
+    volumes:
+      - fuseki-data:/fuseki
 
 volumes:
   data:
     driver: local
   config:
+    driver: local
+  fuseki-data:
     driver: local
