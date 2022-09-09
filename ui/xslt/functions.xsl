@@ -2600,6 +2600,7 @@
                     <xsl:when test="$label='visualize_error5'">Jusqu'à 8 trésors peuvent être sélectionnés</xsl:when>
                     <xsl:when test="$label='visualize_error6'">Un minimum de 1 et un maximum de 30 trésors peuvent être sélectionnés</xsl:when>
                     <xsl:when test="$label='visualize_error7'">Jusqu'à 30 trésors peuvent être sélectionnés</xsl:when>
+		    <xsl:when test="$label='online_access'">accèss en ligne</xsl:when>
                     <xsl:when test="$label='lang_ar'">Arabe</xsl:when>
                     <xsl:when test="$label='lang_bg'">Bulgare</xsl:when>
                     <xsl:when test="$label='lang_da'">Danois</xsl:when>
@@ -4425,6 +4426,7 @@
                     <xsl:when test="$label='visualize_error5'">Up to 8 hoards may be selected.</xsl:when>
                     <xsl:when test="$label='visualize_error6'">At least 1 and up to 30 hoards may be selected.</xsl:when>
                     <xsl:when test="$label='visualize_error7'">Up to 30 hoards may be selected.</xsl:when>
+		    <xsl:when test="$label='online_access'">online access</xsl:when>
                     <xsl:when test="$label='lang_ar'">Arabic</xsl:when>
                     <xsl:when test="$label='lang_bg'">Bulgarian</xsl:when>
                     <xsl:when test="$label='lang_da'">Danish</xsl:when>

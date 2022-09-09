@@ -96,6 +96,10 @@
 		</li>
 	</xsl:template>
 
+	<!-- don't show objectType -->
+	<xsl:template match="nuds:objectType" mode="descMeta">
+	</xsl:template>
+
 	<xsl:template match="*" mode="descMeta">
 		<xsl:choose>
 			<!-- always process symbol here -->
@@ -979,10 +983,9 @@
 						</xsl:choose>
 					</xsl:variable>
 
-					<a
-						href="{$display_path}results?q={if (@xlink:arcrole='nmo:hasTypeSeriesItem') then 'coinType' else 'reference'}_facet:&#x022;{$label}&#x022;{if (string($langParam)) then concat('&amp;lang=', $langParam) else ''}">
+					<span>
 						<xsl:apply-templates select="*"/>
-					</a>
+					</span>
 				</xsl:otherwise>
 			</xsl:choose>
 			<xsl:if test="@xlink:href">
@@ -1073,6 +1076,26 @@
 				<span class="glyphicon glyphicon-new-window"/>
 			</a>
 		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="tei:ref">
+		<i>
+			<a href="{@target}" target="_blank">
+				<xsl:text> [</xsl:text>
+				<xsl:apply-templates/>
+				<xsl:text>]</xsl:text>
+			</a>
+		</i>
+	</xsl:template>
+
+	<xsl:template match="tei:ref[@type='online']">
+		<i>
+			<a href="{@target}" target="_blank">
+				<xsl:text> (</xsl:text>
+				<xsl:value-of select="numishare:normalizeLabel('online_access', $lang)"/>
+				<xsl:text>)</xsl:text>
+			</a>
+		</i>
 	</xsl:template>
 
 	<xsl:template match="tei:div" mode="descMeta">
