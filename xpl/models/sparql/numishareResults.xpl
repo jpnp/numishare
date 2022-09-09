@@ -152,6 +152,10 @@ OPTIONAL { ?object nmo:hasObverse/foaf:thumbnail ?obvThumb }
 OPTIONAL { ?object nmo:hasObverse/foaf:depiction ?obvRef }
 OPTIONAL { ?object nmo:hasReverse/foaf:thumbnail ?revThumb }
 OPTIONAL { ?object nmo:hasReverse/foaf:depiction ?revRef }
+OPTIONAL { ?object nmo:hasObverse/dcterms:relation/foaf:thumbnail ?obvThumb }
+OPTIONAL { ?object nmo:hasObverse/dcterms:relation/foaf:depiction ?obvRef }
+OPTIONAL { ?object nmo:hasReverse/dcterms:relation/foaf:thumbnail ?revThumb }
+OPTIONAL { ?object nmo:hasReverse/dcterms:relation/foaf:depiction ?revRef }
 } HAVING (isURI(?comThumb) || isURI(?comRef) || isURI(?obvThumb) || isURI(?obvRef) || isURI(?revThumb) || isURI(?revRef)) ORDER BY ASC(?datasetTitle) LIMIT 5]]></xsl:variable>
 					
 					<xsl:template match="/">
