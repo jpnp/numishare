@@ -82,7 +82,7 @@
 				<xsl:attribute name="style">direction: rtl;</xsl:attribute>							
 			</xsl:if>
 			<div class="row content">
-				<div class="col-md-12">
+				<div class="col-md-8">
 					<xsl:choose>
 						<xsl:when test="//page[@stub = $stub]/content[@lang=$lang]">
 							<xsl:copy-of select="//page[@stub = $stub]/content[@lang=$lang]/text"/>

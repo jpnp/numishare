@@ -96,7 +96,10 @@
 							</div>
 						</xsl:when>
 						<xsl:otherwise>
-							<div class="col-md-12">
+							<div class="col-md-4 title-img">
+								<img src="https://greekcoinage.org/themes/iris/images/Iris.png" class="img-responsive" style="padding:10px"/>
+							</div>
+							<div class="col-md-6">
 								<h1><xsl:value-of select="title"/></h1>
 								<p><xsl:value-of select="description"/></p>
 							</div>

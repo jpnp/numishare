@@ -89,7 +89,7 @@
 					<xsl:when test="features_enabled = true() and count(doc('input:feature-model')//doc) = 1">
 						<div class="col-md-9">
 							<h1><xsl:value-of select="title"/></h1>
-							<p><xsl:value-of select="description"/></p>
+							<p class="title-desc"><xsl:value-of select="description"/></p>
 						</div>
 						<div class="col-md-3">
 							<div id="feature" class="highlight text-center">
@@ -100,7 +100,7 @@
 					<xsl:otherwise>
 						<div class="col-md-12">
 							<h1><xsl:value-of select="title"/></h1>
-							<p><xsl:value-of select="description"/></p>
+							<p class="title-desc"><xsl:value-of select="description"/></p>
 						</div>
 					</xsl:otherwise>
 				</xsl:choose>
