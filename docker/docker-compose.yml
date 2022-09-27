@@ -33,40 +33,43 @@ services:
     container_name: solr
     image: solr:8.11
     ports:
-      - "8983:8983"
+      - "127.0.0.1:8983:8983"
     volumes:
-      - data:/var/solr
+      - solr-data:/var/solr
       - "../solr-home/1.6:/var/solr/data/numishare"
     command:
       - solr-precreate
       - gettingstarted
   exist:
-    image: existdb/existdb:5.3.1
+    image: existdb/existdb:5.4.1
     container_name: exist
     ports:
-      - 8080:8080
-      - 8443:8443
+      - 127.0.0.1:8080:8080
+      - 127.0.0.1:8443:8443
     volumes:
+      #- type: volume
+      #  source: exist-data
+      #  target: /exist/data
       - type: volume
-        source: data
-        target: /exist/webapp/WEB-INF/data
-      - type: volume
-        source: config
+        source: exist-config
         target: /exist/config
   fuseki:
     image: stain/jena-fuseki:3.14.0
     container_name: fuseki
     ports:
-      - 3030:3030
+      - 127.0.0.1:3030:3030
     environment:
       - ADMIN_PASSWORD
+      - JVM_ARGS=-Xmx3g
     volumes:
       - fuseki-data:/fuseki
 
 volumes:
-  data:
+  solr-data:
     driver: local
-  config:
+  exist-data:
+    driver: local
+  exist-config:
     driver: local
   fuseki-data:
     driver: local
