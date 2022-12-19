@@ -64,6 +64,22 @@ services:
     volumes:
       - fuseki-data:/fuseki
 
+  varnish:
+    image: varnish:7.2
+    container_name: varnish
+    ports:
+      - 127.0.0.1:3080:80
+    environment:
+      - VARNISH_SIZE=250MB
+    tmpfs:
+      - "/var/lib/varnish/varnishd:exec,mode=777"
+    volumes:
+      - "./default.vcl:/etc/varnish/default.vcl:ro"
+    # user due to permissions issue
+    # <https://github.com/varnish/docker-varnish/issues/53>
+    # <https://github.com/docker/compose/issues/9415#issuecomment-1260008898>
+    user: root
+
 volumes:
   solr-data:
     driver: local
