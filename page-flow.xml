@@ -37,6 +37,7 @@
 
         <!-- ARCH -->
 	<page path="/numishare/arch/" model="xpl/models/config.xpl" view="xpl/views/pages/index2.xpl"/>
+	<page path="/numishare/change/" model="xpl/models/config.xpl" view="xpl/views/pages/index_ch.xpl"/>
        <!--<page path="/numishare/arch" model="xpl/models/config.xpl" view="xpl/views/pages/index.xpl"/>-->
 
 	<!-- ABC -->
