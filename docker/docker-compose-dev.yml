@@ -8,10 +8,6 @@ services:
       - "443:443"
     volumes:
       - "./httpd.conf:/usr/local/apache2/conf/httpd.conf"
-      - "./httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf"
-      - "./serverchain.crt:/usr/local/apache2/conf/server.crt"
-      - "./server.key:/usr/local/apache2/conf/server.key"
-      - "./static-site:/srv"
       - "./themes:/srv/themes"
   orbeon:
     container_name: orbeon
@@ -47,9 +43,9 @@ services:
       - 127.0.0.1:8080:8080
       - 127.0.0.1:8443:8443
     volumes:
-      #- type: volume
-      #  source: exist-data
-      #  target: /exist/data
+      - type: volume
+        source: exist-data
+        target: /exist/data
       - type: volume
         source: exist-config
         target: /exist/config
@@ -74,7 +70,7 @@ services:
     tmpfs:
       - "/var/lib/varnish/varnishd:exec,mode=777"
     volumes:
-      - "./default.vcl:/etc/varnish/default.vcl:ro"
+      - "./no-cache.vcl:/etc/varnish/default.vcl:ro"
     # user due to permissions issue
     # <https://github.com/varnish/docker-varnish/issues/53>
     # <https://github.com/docker/compose/issues/9415#issuecomment-1260008898>
